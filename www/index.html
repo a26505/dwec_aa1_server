@@ -1,29 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gestor de Contraseñas - Principal</title>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-  <main>
-    <ul></ul>
-  </main>
-  <script>
-    let drawData = (data) => {
-      data.forEach(category => {
-        let parent = document.getElementsByTagName('ul')[0]
-        let child = document.createElement('li')
-        // child.innerText = JSON.stringify(category)
-        child.innerText = category.name
-        parent.appendChild(child)
-      })
-    }
+  <main class="container">
+    <header>
+      <h1>Gestor de Contraseñas</h1>
+      <div class="header-actions">
+        <a class="btn" href="form.html?type=category">+ Nueva categoría</a>
+        <a class="btn" href="form.html?type=site">+ Nuevo site</a>
+      </div>
+    </header>
 
-    fetch("http://localhost:3000/categories")
-      .then(res => res.json())
-      .then(data => drawData(data))
-  </script>
+    <section class="layout">
+      <aside class="sidebar">
+        <h2>Categorías</h2>
+        <ul id="categoriesList" class="list"></ul>
+        <div id="catEmpty" class="empty">No hay categorías.</div>
+      </aside>
+
+      <section class="content">
+        <h2 id="sitesTitle">Selecciona una categoría</h2>
+        <div id="sitesContainer" class="sites"></div>
+        <div id="sitesEmpty" class="empty">No hay sites para mostrar.</div>
+      </section>
+    </section>
+  </main>
+
+  <script src="js/categories.js" defer></script>
 </body>
 </html>
