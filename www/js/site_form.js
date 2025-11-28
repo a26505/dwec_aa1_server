@@ -1,66 +1,79 @@
+// URL base de la API
 const API_URL = "http://localhost:3000";
-const siteList = document.getElementById("site-list");
-const siteTitle = document.getElementById("site-title");
-const searchInput = document.getElementById("search-site");
 
-const urlParams = new URLSearchParams(window.location.search);
-const categoryId = urlParams.get("category");
-const categoryName = urlParams.get("name");
-siteTitle.textContent = `Sites de la categoría: ${categoryName}`;
+// Elementos del DOM
+const categoryForm = document.getElementById("categoryForm");
+const siteForm = document.getElementById("siteForm");
+const siteCategorySelect = document.getElementById("siteCategory");
 
-let sites = [];
+// Detectar tipo de formulario desde la URL
+const params = new URLSearchParams(window.location.search);
+const type = params.get("type");
 
-function printSites(siteData) {
-  siteList.innerHTML = "";
-  const filter = searchInput.value.toLowerCase();
+// Al cargar la página
+document.addEventListener("DOMContentLoaded", () => {
+  if (type === "category") {
+    categoryForm.classList.remove("hidden");
+  } else {
+    siteForm.classList.remove("hidden");
+    loadCategories();
+  }
+});
 
-  siteData.forEach(site => {
-    if (!site.name.toLowerCase().includes(filter) && !site.user.toLowerCase().includes(filter)) return;
-
-    const li = document.createElement("li");
-    li.innerHTML = `<strong>${site.name}</strong> (${site.user})`;
-
-    const passInput = document.createElement("input");
-    passInput.type = "password";
-    passInput.value = site.password;
-    passInput.readOnly = true;
-    passInput.style.marginLeft = "10px";
-
-    const toggleBtn = document.createElement("button");
-    toggleBtn.textContent = "Mostrar";
-    toggleBtn.onclick = () => {
-      if (passInput.type === "password") {
-        passInput.type = "text";
-        toggleBtn.textContent = "Ocultar";
-      } else {
-        passInput.type = "password";
-        toggleBtn.textContent = "Mostrar";
-      }
-    };
-
-    const btnDel = document.createElement("button");
-    btnDel.textContent = "Eliminar";
-    btnDel.onclick = () => {
-      fetch(`${API_URL}/sites/${site.id}`, { method: "DELETE" })
-        .then(loadSites);
-    };
-
-    li.appendChild(passInput);
-    li.appendChild(toggleBtn);
-    li.appendChild(btnDel);
-    siteList.appendChild(li);
-  });
-}
-
-function loadSites() {
-  fetch(`${API_URL}/categories/${categoryId}`)
-    .then(res => res.json())
-    .then(data => {
-      sites = data.sites || [];
-      printSites(sites);
+// Cargar categorías en el select de sites
+function loadCategories() {
+  fetch(`${API_URL}/categories`)
+    .then(r => r.json())
+    .then(categories => {
+      siteCategorySelect.innerHTML = "";
+      categories.forEach(c => {
+        const opt = document.createElement("option");
+        opt.value = c.id;
+        opt.textContent = c.name;
+        siteCategorySelect.appendChild(opt);
+      });
     });
 }
 
-searchInput.addEventListener("input", () => printSites(sites));
+// Crear categoría
+categoryForm.addEventListener("submit", e => {
+  e.preventDefault();
 
-loadSites();
+  const name = document.getElementById("catName").value.trim();
+  if (!name) return alert("Nombre obligatorio");
+
+  fetch(`${API_URL}/categories`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name })
+  })
+    .then(() => {
+      alert("Categoría creada");
+      window.location.href = "index.html";
+    });
+});
+
+// Crear site
+siteForm.addEventListener("submit", e => {
+  e.preventDefault();
+
+  const categoryId = siteCategorySelect.value;
+
+  const payload = {
+    name: document.getElementById("siteName").value.trim(),
+    url: document.getElementById("siteUrl").value.trim(),
+    user: document.getElementById("siteUser").value.trim(),
+    password: document.getElementById("sitePassword").value.trim(),
+    description: document.getElementById("siteDescription").value.trim()
+  };
+
+  fetch(`${API_URL}/categories/${categoryId}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  })
+    .then(() => {
+      alert("Site creado");
+      window.location.href = "index.html";
+    });
+});
