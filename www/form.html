@@ -1,57 +1,17 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Formulario - Gestor de Contraseñas</title>
-  <link rel="stylesheet" href="css/styles.css" />
+  <meta charset="UTF-8">
+  <title>Formulario</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script defer src="js/api.js"></script>
+  <script defer src="js/site_form.js"></script>
 </head>
 <body>
-  <main class="container">
-    <header>
-      <h1 id="formTitle">Formulario</h1>
-      <a class="btn" href="index.html">← Volver</a>
-    </header>
 
-    <section class="form-area">
-      <form id="categoryForm" class="form hidden">
-        <h2>Nueva Categoría</h2>
-        <label>Nombre (obligatorio)
-          <input id="catName" name="name" required />
-        </label>
-        <div class="form-actions">
-          <button type="submit" class="btn">Crear categoría</button>
-        </div>
-      </form>
+  <h1 id="title"></h1>
 
-      <form id="siteForm" class="form hidden">
-        <h2 id="siteFormTitle">Nuevo Site</h2>
-        <label>Nombre (obligatorio)
-          <input id="siteName" name="name" required />
-        </label>
-        <label>URL
-          <input id="siteUrl" name="url" />
-        </label>
-        <label>Usuario (obligatorio)
-          <input id="siteUser" name="user" required />
-        </label>
-        <label>Contraseña (obligatorio)
-          <input id="sitePassword" name="password" required />
-        </label>
-        <label>Descripción
-          <textarea id="siteDescription" name="description"></textarea>
-        </label>
-        <label>Categoría
-          <select id="siteCategory" name="category"></select>
-        </label>
-        <div class="form-actions">
-          <button type="submit" class="btn">Guardar site</button>
-        </div>
-      </form>
-    </section>
+  <form id="form"></form>
 
-  </main>
-
-  <script src="js/site_form.js" defer></script>
 </body>
 </html>

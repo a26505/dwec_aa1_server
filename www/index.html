@@ -1,36 +1,24 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Gestor de Contraseñas - Principal</title>
-  <link rel="stylesheet" href="css/styles.css" />
+  <meta charset="UTF-8">
+  <title>Gestor de Contraseñas</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script defer src="js/api.js"></script>
+  <script defer src="js/categories.js"></script>
 </head>
 <body>
-  <main class="container">
-    <header>
-      <h1>Gestor de Contraseñas</h1>
-      <div class="header-actions">
-        <a class="btn" href="form.html?type=category">+ Nueva categoría</a>
-        <a class="btn" href="form.html?type=site">+ Nuevo site</a>
-      </div>
-    </header>
+  <h1>Gestor de Contraseñas</h1>
 
-    <section class="layout">
-      <aside class="sidebar">
-        <h2>Categorías</h2>
-        <ul id="categoriesList" class="list"></ul>
-        <div id="catEmpty" class="empty">No hay categorías.</div>
-      </aside>
+  <h2>Categorías</h2>
+  <div id="category-list"></div>
 
-      <section class="content">
-        <h2 id="sitesTitle">Selecciona una categoría</h2>
-        <div id="sitesContainer" class="sites"></div>
-        <div id="sitesEmpty" class="empty">No hay sites para mostrar.</div>
-      </section>
-    </section>
-  </main>
+  <a class="btn" href="form.html?type=category">Añadir categoría</a>
 
-  <script src="js/categories.js" defer></script>
+  <hr>
+
+  <h2>Sites</h2>
+  <div id="site-list"></div>
+
 </body>
 </html>
