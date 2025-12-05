@@ -1,29 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Contraseñas</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-  <main>
-    <ul></ul>
-  </main>
-  <script>
-    let drawData = (data) => {
-      data.forEach(category => {
-        let parent = document.getElementsByTagName('ul')[0]
-        let child = document.createElement('li')
-        // child.innerText = JSON.stringify(category)
-        child.innerText = category.name
-        parent.appendChild(child)
-      })
-    }
+    <header>
+        <h1><i class="fas fa-lock"></i> Gestor de Contraseñas</h1>
+        <input id="searchBox" type="search" placeholder="Buscar categorías o sitios...">
+    </header>
 
-    fetch("http://localhost:3000/categories")
-      .then(res => res.json())
-      .then(data => drawData(data))
-  </script>
+    <main>
+        <section class="card">
+            <h2><i class="fas fa-folder-open"></i> Categorías</h2>
+            <ul id="categoryList">
+                </ul>
+            <a href="form_category.html" class="btn"><i class="fas fa-plus"></i> Nueva Categoría</a>
+        </section>
+
+        <section class="card">
+            <h2><i class="fas fa-key"></i> Sitios Guardados</h2>
+            <ul id="siteList">
+                </ul>
+            <a href="form_site.html" class="btn"><i class="fas fa-plus"></i> Nuevo Sitio</a>
+        </section>
+    </main>
+
+    <script src="js/api.js"></script>
+    <script src="js/categories.js"></script> 
 </body>
 </html>

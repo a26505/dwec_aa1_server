@@ -1,0 +1,274 @@
+:root {
+    --primary-color: #2c7be5; /* Azul moderno */
+    --secondary-color: #6e84a3; /* Gris suave */
+    --success-color: #00d27a;
+    --warning-color: #ffc107;
+    --danger-color: #e63757;
+    --background-color: #f6f8fa;
+    --card-background: #ffffff;
+    --text-color: #333;
+    --border-radius: 6px;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+header {
+    background-color: var(--card-background);
+    padding: 20px 30px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow);
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+header h1 {
+    color: var(--primary-color);
+    font-size: 1.8em;
+}
+
+#searchBox {
+    padding: 10px 15px;
+    border: 1px solid #e1e8ee;
+    border-radius: var(--border-radius);
+    width: 300px;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+#searchBox:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+main {
+    padding: 30px;
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+/* Tarjetas (Cards) */
+.card {
+    background: var(--card-background);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+}
+
+.card h2 {
+    border-bottom: 1px solid #e1e8ee;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+    font-size: 1.3em;
+}
+
+/* Botones (Buttons) y Enlaces */
+.btn {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    transition: background-color 0.3s;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: #1a6ac6;
+}
+
+/* ---------------------------------------------------- */
+/* SCROLL INDEPENDIENTE PARA LISTAS */
+/* ---------------------------------------------------- */
+ul {
+    list-style: none;
+    margin-bottom: 20px;
+    max-height: 400px; /* Altura máxima para la zona de scroll */
+    overflow-y: auto;  /* Habilita el scroll vertical */
+}
+
+.category-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1em;
+    padding: 0 5px; 
+    transition: background-color 0.2s;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+
+.category-item:hover:not(.active) {
+    background-color: #f0f2f4;
+}
+
+.category-item .category-info {
+    flex-grow: 1; 
+    padding: 12px 0;
+    display: flex;
+    align-items: center;
+}
+
+/* Resaltado de categoría activa */
+.category-item.active {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.category-item.active .category-info span {
+    color: white; 
+}
+
+/* Estilo para los Sites */
+.site-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    padding: 12px 0;
+    border-bottom: 1px dashed #e1e8ee;
+    align-items: center;
+}
+
+.site-item:last-child {
+    border-bottom: none;
+}
+
+/* Iconos de Categoría */
+.category-info span {
+    margin-right: 10px;
+    font-size: 1.2em;
+    min-width: 18px; 
+    text-align: center;
+}
+
+.site-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Botones de acción */
+.site-actions button {
+    padding: 8px 10px;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 600;
+    color: white;
+    transition: opacity 0.2s;
+    font-size: 0.9em;
+}
+
+.btn-show-pass {
+    background-color: var(--secondary-color); 
+}
+
+.btn-ocultar {
+    background-color: var(--warning-color); 
+    color: var(--text-color);
+}
+
+.btn-delete {
+    background-color: var(--danger-color);
+}
+
+/* Display de Contraseña */
+.password-display {
+    padding: 5px 10px;
+    background-color: #e1e8ee;
+    border-radius: var(--border-radius);
+    font-family: monospace;
+    font-weight: bold;
+    color: var(--text-color);
+    margin-right: 10px;
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+}
+
+/* Formularios */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input:not(#searchBox),
+select,
+form button:not(#genPass) {
+    padding: 12px;
+    border: 1px solid #e1e8ee;
+    border-radius: var(--border-radius);
+    font-size: 1em;
+    width: 100%;
+    transition: border-color 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+#genPass {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    background-color: var(--success-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#genPass:hover {
+    background-color: #00b067;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    #searchBox {
+        width: 100%;
+    }
+    main {
+        padding: 15px;
+        grid-template-columns: 1fr;
+    }
+    .site-actions {
+        flex-wrap: wrap;
+    }
+    /* En móviles, la lista puede ser más alta */
+    ul {
+        max-height: 300px;
+    }
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Nuevo Sitio</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+    <header>
+        <h1><i class="fas fa-plus-circle"></i> Nuevo Sitio</h1>
+        <a href="index.html" class="btn" style="width: auto;"><i class="fas fa-arrow-left"></i> Volver</a>
+    </header>
+
+    <main>
+        <form id="formSite" class="card">
+            <h2>Detalles del Sitio</h2>
+            <select id="siteCategory" required>
+                </select>
+            <input id="siteName" type="text" placeholder="Nombre del Sitio (Ej: Gmail, Netflix)" required>
+            <input id="siteUser" type="text" placeholder="Usuario/Email" required>
+            <input id="sitePass" type="password" placeholder="Contraseña" required>
+            <button type="button" id="genPass"><i class="fas fa-wand-magic-sparkles"></i> Autogenerar contraseña segura</button>
+            <button type="submit" class="btn"><i class="fas fa-save"></i> Guardar Sitio</button>
+        </form>
+    </main>
+
+    <script src="js/api.js"></script>
+    <script src="js/form_site.js"></script>
+</body>
+</html>
